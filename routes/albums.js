@@ -34,7 +34,7 @@ router.get('/:id', catchAsync(async (req, res) => {
 // Delete an album
 router.delete('/:id', catchAsync(async (req, res) => {
   await Album.findByIdAndDelete(req.params.id);
-  res.status(204).end();
+  res.redirect('/albums');
 }));
 
 module.exports = router;
