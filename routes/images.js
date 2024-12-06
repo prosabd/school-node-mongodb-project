@@ -11,8 +11,8 @@ const upload = multer({ dest: 'uploads/' });
 
 // Show form to upload a new image to an album
 router.get('/new', (req, res) => {
-  res.render('images/new', { albumId: req.params.albumId });
-});
+    res.render('images/new', { albumId: req.params.albumId });
+  });
 
 // Handle image upload
 router.post('/', upload.single('image'), catchAsync(async (req, res) => {
@@ -24,7 +24,7 @@ router.post('/', upload.single('image'), catchAsync(async (req, res) => {
   await image.save();
   album.images.push(image);
   await album.save();
-  res.redirect(`/albums/${album._id}`);
+  res.status(201).json(image);
 }));
 
 // Delete an image from an album
@@ -32,7 +32,7 @@ router.delete('/:imageId', catchAsync(async (req, res) => {
   const { albumId, imageId } = req.params;
   await Image.findByIdAndDelete(imageId);
   await Album.findByIdAndUpdate(albumId, { $pull: { images: imageId } });
-  res.redirect(`/albums/${albumId}`);
+  res.status(204).end();
 }));
 
 module.exports = router;

@@ -4,11 +4,18 @@ const app = express();
 const albumRoutes = require('./routes/albums');
 const imageRoutes = require('./routes/images');
 
-// Set view engine
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // Serve static files
 app.use(express.static('public'));
+
+// Root route
+app.get('/', (req, res) => {
+    res.redirect('/albums');
+});
 
 // Routes
 app.use('/albums', albumRoutes);
@@ -20,30 +27,13 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong!');
 });
 
-// ...existing code...
-
-// Middleware
-app.use(express.json());
-
-// ...additional middleware...
-
-// Routes
-// ...define your routes...
-
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// ...existing code...
-
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/your-database-name', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect('mongodb://localhost/tp-node-mongodb')
 .then(() => console.log('Connected to MongoDB'))
 .catch((err) => console.error('Failed to connect to MongoDB', err));
-
-// ...existing code...
