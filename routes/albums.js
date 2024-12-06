@@ -18,6 +18,13 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('albums/show', { album });
   }));
 
+// Add a POST route to handle album creation
+router.post('/', catchAsync(async (req, res) => {
+  const album = new Album(req.body);
+  await album.save();
+  res.redirect(`/albums/${album._id}`);
+}));
+
 // Display a single album
 router.get('/:id', catchAsync(async (req, res) => {
   const album = await Album.findById(req.params.id).populate('images');

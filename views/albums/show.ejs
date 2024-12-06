@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../head') %>
+    <title><%= album.title %></title>
+  </head>
+  <body>
+    <%- include('../navbar') %>
+
+    <div class="container mt-5">
+      <a href="/albums" class="btn btn-secondary">Back to Albums</a>
+      <h1 class="mb-4 mt-8"><%= album.title %></h1>
+      <p><%= album.description %></p>
+      <a href="/albums/<%= album._id %>/images/new" class="btn btn-primary mb-3">Add New Image</a>
+
+      <div class="row">
+        <% album.images.forEach(function(image) { %>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="<%= image.url %>" class="card-img-top" alt="Image" />
+            <div class="card-body">
+              <form action="/albums/<%= album._id %>/images/<%= image._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Delete Image</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <%- include('../footer') %>
+  </body>
+</html>

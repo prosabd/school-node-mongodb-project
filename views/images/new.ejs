@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../head') %>
+    <title>Upload New Image</title>
+  </head>
+  <body>
+    <%- include('../navbar') %>
+
+    <div class="container mt-5">
+      <h1 class="mb-4">Upload New Image to Album</h1>
+      <form action="/albums/<%= albumId %>/images" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="image" class="form-label">Select Image File</label>
+          <input class="form-control" type="file" id="image" name="image" accept="image/*" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Image</button>
+      </form>
+    </div>
+
+    <%- include('../footer') %>
+  </body>
+</html>

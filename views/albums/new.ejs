@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../head') %>
+    <title>Create New Album</title>
+  </head>
+  <body>
+    <%- include('../navbar') %>
+
+    <div class="container mt-5">
+      <h1 class="mb-4">Create New Album</h1>
+      <form action="/albums" method="POST">
+        <div class="mb-3">
+          <label for="title" class="form-label">Album Title</label>
+          <input type="text" class="form-control" id="title" name="title" required />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Album Description</label>
+          <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Album</button>
+      </form>
+    </div>
+
+    <%- include('../footer') %>
+  </body>
+</html>
