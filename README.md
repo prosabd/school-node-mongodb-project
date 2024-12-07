@@ -2,6 +2,8 @@
 
 A Node.js web application for creating and managing photo albums using Express and MongoDB.
 
+![Home](https://github.com/prosabd/school-node-mongodb-project/releases/download/images/home.png)
+
 ## ✨ Features
 
 - 📁 Create and manage photo albums
@@ -61,6 +63,8 @@ node app.js
 2. Create a new album by clicking the "Create new Album" button.
 3. Upload images to the album by clicking the "Add New Image" button.
 4. View, manage, and delete your photos and albums
+
+![Crud](https://github.com/prosabd/school-node-mongodb-project/releases/download/images/albums.png)
 
 ## 🔨 Tech Stack
 
